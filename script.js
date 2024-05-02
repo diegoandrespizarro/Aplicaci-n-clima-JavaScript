@@ -45,8 +45,6 @@ function mostrarDatosClima(data){
     divDatosClima.appendChild(humedadInfo)
     divDatosClima.appendChild(iconoInfo)
     divDatosClima.appendChild(descripcionInfo)
-    
-    
 
 }
 

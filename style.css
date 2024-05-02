@@ -1,21 +1,25 @@
+*{
+  font-family: Arial, sans-serif;
+}
 body {
     font-family: Arial, sans-serif;
     background-color: #91c7f3;
+    background-image: url(../assets/pexels-padrinan-19670.jpg);
+    background-size:cover;
   }
-  
   .contenedor {
     max-width: 500px;
     margin: 0 auto;
     padding: 20px;
     text-align: center;
-    background-color: #5db8b0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: rgba(63,94,251,0.3);
+    box-shadow: 0 2px 4px rgba(5, 5, 5, 1);
     border-radius:20px;
   }
   
   h1 {
     color: #333333;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: Arial, sans-serif;
   }
   
   input[type="text"] {
@@ -23,7 +27,7 @@ body {
     font-size: 16px;
     width: 70%;
     text-align: center;
-    
+    border-radius:5px;
   }
   
   button {
@@ -33,11 +37,12 @@ body {
     color: #141414;
     border: none;
     cursor: pointer;
-    
+    border-radius:5px ;
   }
   
   #datosClima {
     margin-top: 20px;
-    font-size: 18px;
+    font-size: 20px;
+    font-weight: 600;
   }
   
