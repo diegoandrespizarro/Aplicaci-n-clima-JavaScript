@@ -2,15 +2,26 @@ let urlBase = `https://api.openweathermap.org/data/2.5/weather`
 let api_key = "54adb60961f701fedb8eed2a299064d6"
 let difKelvin = 273.15
 
-document.getElementById("botonBusqueda").addEventListener("click", ()=>{
-    const ciudad = document.getElementById("ciudadEntrada").value
-    if(ciudad){
-        fetchDatosClima(ciudad)
-    }
-})
 
+document.getElementById("botonBusqueda").addEventListener("click", () => {
+    buscarClima();
+});
+
+document.getElementById("ciudadEntrada").addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
+        buscarClima();
+    }
+});
+
+function buscarClima() {
+    const ciudad = document.getElementById("ciudadEntrada").value;
+    if (ciudad) {
+        fetchDatosClima(ciudad);
+    }
+}
 function fetchDatosClima(ciudad){
-    fetch (`${urlBase}?q=${ciudad}&appid=${api_key}`)
+    const lang = 'es';
+    fetch (`${urlBase}?q=${ciudad}&appid=${api_key}&lang=${lang}`)
     .then(data => data.json())
     .then(data => mostrarDatosClima(data))
 }
@@ -24,7 +35,6 @@ function mostrarDatosClima(data){
     const humedad = data.main.humidity
     const descripcion = data.weather[0].description
     const icono = data.weather[0].icon
-
     const ciudadTitulo = document.createElement("h2")
     ciudadTitulo.textContent = `${ciudadNombre}, ${paisNombre}`
 
@@ -40,12 +50,29 @@ function mostrarDatosClima(data){
     const descripcionInfo = document.createElement("p")
     descripcionInfo.textContent = `La descripcion meteorologica es: ${descripcion}`
 
+
     divDatosClima.appendChild(ciudadTitulo)
     divDatosClima.appendChild(temperaturaInfo)
     divDatosClima.appendChild(humedadInfo)
     divDatosClima.appendChild(iconoInfo)
     divDatosClima.appendChild(descripcionInfo)
-
 }
 
 
+// async function traducirDescripcion(descripcion) {
+//     const traducciones = {
+//         "clear sky": "cielo despejado",
+//         "few clouds": "pocas nubes",
+//         "scattered clouds": "nubes dispersas",
+//         "broken clouds": "nubes rotas",
+//         "shower rain": "lluvia",
+//         "rain": "lluvia",
+//         "thunderstorm": "tormenta",
+//         "snow": "nieve",
+//         "mist": "niebla",
+//         "overcast clouds":"nubes cubiertas",
+//     };
+
+//     // Si la descripción está en nuestro objeto de traducciones, la devolvemos, de lo contrario devolvemos la descripción original
+//     return traducciones[descripcion.toLowerCase()] || descripcion;
+// }
